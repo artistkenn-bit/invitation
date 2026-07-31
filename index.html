@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>National GF Day ❤️</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    font-family:'Arial', sans-serif;
+    background:#c98b8b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+/* Floating pictures */
+
+#floatBox{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+
+.floating{
+
+    position:absolute;
+    width:50px;
+    opacity:.8;
+    animation:float 10s linear infinite;
+
+}
+
+
+@keyframes float{
+
+    from{
+        transform:translateY(110vh) rotate(0deg);
+    }
+
+    to{
+        transform:translateY(-120px) rotate(360deg);
+    }
+
+}
+
+
+
+/* Main Card */
+
+
+.card{
+
+    background:#fff5f5;
+    width:90%;
+    max-width:450px;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(90,30,30,.35);
+    z-index:2;
+
+}
+
+
+.card img{
+
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:20px;
+
+}
+
+
+
+h1{
+
+    color:#7b1e1e;
+    font-size:25px;
+
+}
+
+
+
+p{
+
+    color:#5a3030;
+    font-size:17px;
+    line-height:1.5;
+
+}
+
+
+
+button{
+
+    border:none;
+    padding:12px 28px;
+    margin:10px;
+    border-radius:25px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+
+
+#yes{
+
+    background:#8f3f3f;
+    color:white;
+
+}
+
+
+
+#no{
+
+    background:#999;
+    color:white;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div id="floatBox"></div>
+
+
+<div class="card">
+
+
+<img id="photo" src="happy.jpg">
+
+
+<h1 id="text">
+
+Do you wanna go with me unwinding and celebrating National GF Day? ❤️
+
+</h1>
+
+
+<p id="message"></p>
+
+
+<button id="yes">
+YES ❤️
+</button>
+
+
+<button id="no">
+NO 💔
+</button>
+
+
+</div>
+
+
+
+<script>
+
+
+// =========================
+// FLOATING PICTURES
+// =========================
+
+
+let floatingPictures=[
+
+"pic1.png",
+"pic2.png",
+"pic3.png",
+"pic4.png",
+"pic5.png"
+
+];
+
+
+setInterval(()=>{
+
+
+let img=document.createElement("img");
+
+
+img.src=floatingPictures[
+Math.floor(Math.random()*floatingPictures.length)
+];
+
+
+img.className="floating";
+
+
+img.style.left=Math.random()*100+"%";
+
+
+img.style.width=
+(30+Math.random()*40)+"px";
+
+
+img.style.animationDuration=
+(7+Math.random()*8)+"s";
+
+
+document
+.getElementById("floatBox")
+.appendChild(img);
+
+
+
+setTimeout(()=>{
+
+img.remove();
+
+},15000);
+
+
+
+},700);
+
+
+
+
+
+
+// =========================
+// NO BUTTON PROMPTS
+// =========================
+
+
+let prompts=[
+
+
+{
+text:"Are you sure? 🥺",
+image:"sad1.jpg"
+},
+
+
+{
+text:"Laaaaah bat ka nag No 😭",
+image:"sad2.jpg"
+},
+
+
+{
+text:"Beeeeh hindi ako titigil dito 😂",
+image:"sad3.jpg"
+},
+
+
+{
+text:"I'll wait until you said yes. Balakajan ❤️",
+image:"sad4.jpg"
+},
+
+
+{
+text:"Basta mag wa-wait akooo, hindi ako aalis dito 🥹",
+image:"sad5.jpg"
+},
+
+
+{
+text:"Kahit tumagal pa yan ilang taon pa, I'll wait na mag yes ka. Balakajan ❤️",
+image:"sad6.jpg"
+},
+
+
+{
+text:"Yes? yes? yes? 🥺",
+image:"sad7.jpg"
+},
+
+
+{
+text:"Tita oh, si Alex hahahaha 😂",
+image:"sad8.jpg"
+},
+
+
+{
+text:"Beh try mo lang mag yes 😌",
+image:"sad9.jpg"
+},
+
+
+{
+text:"Hindi to titigil hahahaha 😂",
+image:"sad10.jpg"
+}
+
+
+];
+
+
+
+let current=[];
+
+let index=0;
+
+
+
+function shuffle(){
+
+current=[...prompts]
+.sort(()=>Math.random()-0.5);
+
+index=0;
+
+}
+
+
+shuffle();
+
+
+
+
+document
+.getElementById("no")
+.onclick=function(){
+
+
+
+if(index>=current.length){
+
+shuffle();
+
+}
+
+
+
+document
+.getElementById("text")
+.innerHTML=current[index].text;
+
+
+
+document
+.getElementById("photo")
+.src=current[index].image;
+
+
+
+
+let size=1+(index*.12);
+
+
+document
+.getElementById("yes")
+.style.transform=
+"scale("+size+")";
+
+
+
+index++;
+
+
+};
+
+
+
+
+
+
+
+
+// =========================
+// YES PAGE
+// =========================
+
+
+
+document
+.getElementById("yes")
+.onclick=function(){
+
+
+document.querySelector(".card").innerHTML=`
+
+<img src="yes.jpg">
+
+
+<h1>
+YAY! Thank you for saying yes, Dear! ❤️
+</h1>
+
+
+<button onclick="showItinerary()">
+Next ➜
+</button>
+
+`;
+
+
+
+};
+
+
+
+
+
+
+function showItinerary(){
+
+
+document.querySelector(".card").innerHTML=`
+
+<img src="itinerary.jpg">
+
+
+<h1>
+Because you said yes, here's our itinerary! 🥰
+</h1>
+
+
+<p>
+
+If you have any suggestions, feel free to message me.
+We can still adjust this depending on what time we meet and the weather. Hehehe ❤️
+
+</p>
+
+
+<button onclick="showFinal()">
+Next ➜
+</button>
+
+
+`;
+
+
+
+}
+
+
+
+
+
+function showFinal(){
+
+
+document.querySelector(".card").innerHTML=`
+
+<h1>
+See you, Dear! ❤️
+</h1>
+
+
+<p>
+
+Get a good night's sleep today, okay?
+Let's enjoy our day tomorrow.
+I can't wait to spend the day with you. 🥰
+
+</p>
+
+
+`;
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+</html>
