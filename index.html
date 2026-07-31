@@ -2,73 +2,104 @@
 <html>
 <head>
 <title>National GF Day ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-*{box-sizing:border-box}
 
 body{
-margin:0;height:100vh;overflow:hidden;
-font-family:Arial,sans-serif;
+margin:0;
+height:100vh;
+overflow:hidden;
+font-family:Arial;
 background:#c98b8b;
-display:flex;justify-content:center;align-items:center
+display:flex;
+align-items:center;
+justify-content:center
 }
 
 .card{
 background:#fff5f5;
-width:90%;max-width:450px;
-padding:30px;border-radius:25px;
+padding:25px;
+width:90%;
+max-width:420px;
 text-align:center;
-box-shadow:0 15px 35px #7b1e1e55;
-z-index:5
+border-radius:25px;
+box-shadow:0 10px 30px #7b1e1e55;
+z-index:2
 }
 
-.card img{
-width:250px;height:250px;
-object-fit:cover;border-radius:20px
+img{
+width:230px;
+height:230px;
+object-fit:cover;
+border-radius:20px
 }
 
-h1{color:#7b1e1e}
-p{color:#5a3030;line-height:1.5}
+h1{
+color:#7b1e1e
+}
+
+p{
+color:#5a3030;
+line-height:1.5
+}
 
 button{
-padding:12px 28px;
-margin:10px;
+padding:12px 25px;
+margin:8px;
 border:0;
-border-radius:25px;
+border-radius:20px;
 font-size:18px;
 cursor:pointer
 }
 
-#yes{background:#8f3f3f;color:white}
-#no{background:#999;color:white}
+#yes{
+background:#8f3f3f;
+color:white
+}
+
+#no{
+background:#999;
+color:white
+}
+
 
 #floatBox{
 position:fixed;
-width:100%;height:100%;
-top:0;left:0;
+inset:0;
 overflow:hidden;
 pointer-events:none
 }
 
-.floating{
+.float{
 position:absolute;
-border-radius:15px;
-opacity:.8;
-animation:up linear forwards
+animation:fly linear forwards;
+border-radius:15px
 }
 
-@keyframes up{
-from{transform:translateY(110vh) rotate(0)}
-to{transform:translateY(-150px) rotate(360deg)}
+@keyframes fly{
+
+from{
+transform:translateY(110vh)
 }
+
+to{
+transform:translateY(-120px) rotate(360deg)
+}
+
+}
+
 </style>
 
 </head>
 
+
 <body>
 
+
 <div id="floatBox"></div>
+
 
 <div class="card">
 
@@ -78,10 +109,18 @@ to{transform:translateY(-150px) rotate(360deg)}
 Do you wanna go with me unwinding and celebrating National GF Day? ❤️
 </h1>
 
-<button id="yes">YES ❤️</button>
-<button id="no">NO 💔</button>
+
+<button id="yes">
+YES ❤️
+</button>
+
+<button id="no">
+NO 💔
+</button>
+
 
 </div>
+
 
 
 <script>
@@ -89,7 +128,7 @@ Do you wanna go with me unwinding and celebrating National GF Day? ❤️
 
 // FLOATING PICTURES LOOP
 
-let floatPics=[
+let pics=[
 "pic1.png",
 "pic2.png",
 "pic3.png",
@@ -97,63 +136,91 @@ let floatPics=[
 "pic5.png"
 ];
 
-let fp=0;
 
-function floatPic(){
+let p=0;
 
-let x=document.createElement("img");
-
-x.src=floatPics[fp];
-x.className="floating";
-
-x.style.left=Math.random()*100+"%";
-x.style.width=40+Math.random()*30+"px";
-x.style.animationDuration=7+Math.random()*5+"s";
-
-document.getElementById("floatBox").appendChild(x);
-
-setTimeout(()=>x.remove(),12000);
-
-}
-
-setInterval(floatPic,700);
 
 setInterval(()=>{
 
-fp++;
+let x=document.createElement("img");
 
-if(fp>=floatPics.length)fp=0;
+x.src=pics[p];
+
+x.className="float";
+
+
+x.style.left=Math.random()*100+"%";
+
+x.style.width=
+40+Math.random()*30+"px";
+
+
+x.style.animationDuration=
+7+Math.random()*5+"s";
+
+
+document.getElementById("floatBox")
+.appendChild(x);
+
+
+setTimeout(()=>x.remove(),12000);
+
+
+},700);
+
+
+
+setInterval(()=>{
+
+p++;
+
+if(p>=pics.length)
+p=0;
+
 
 },8000);
 
 
 
-// NO BUTTON PROMPTS
+
+
+// NO PROMPTS
 
 
 let prompts=[
 
 ["Are you sure? 🥺","sad1.jpg"],
+
 ["Laaaaah bat ka nag No 😭","sad2.jpg"],
+
 ["Beeeeh hindi ako titigil dito 😂","sad3.jpg"],
+
 ["I'll wait until you said yes. Balakajan ❤️","sad4.jpg"],
+
 ["Basta mag wa-wait akooo, hindi ako aalis dito 🥹","sad5.jpg"],
+
 ["Kahit tumagal pa yan ilang taon pa, I'll wait na mag yes ka. Balakajan ❤️","sad6.jpg"],
+
 ["Yes? yes? yes? 🥺","sad7.jpg"],
+
 ["Tita oh, si Alex hahahaha 😂","sad8.jpg"],
+
 ["Beh try mo lang mag yes 😌","sad9.jpg"],
+
 ["Hindi to titigil hahahaha 😂","sad10.jpg"]
 
 ];
 
 
-let order=[];
+let list=[];
 let i=0;
+let scale=1;
 
 
 function shuffle(){
 
-order=[...prompts].sort(()=>Math.random()-.5);
+list=[...prompts].sort(()=>Math.random()-.5);
+
 i=0;
 
 }
@@ -162,19 +229,26 @@ shuffle();
 
 
 
-document.getElementById("no").onclick=()=>{
+no.onclick=()=>{
 
 
-if(i>=order.length)shuffle();
+if(i>=list.length)
+shuffle();
 
 
-document.getElementById("text").innerHTML=order[i][0];
+text.innerHTML=list[i][0];
 
-document.getElementById("photo").src=order[i][1];
+photo.src=list[i][1];
 
 
-document.getElementById("yes").style.transform=
-"scale("+(1+i*.12)+")";
+scale+=.15;
+
+if(scale>3)
+scale=3;
+
+
+yes.style.transform=
+`scale(${scale})`;
 
 
 i++;
@@ -184,21 +258,26 @@ i++;
 
 
 
+
 // YES PAGE
 
 
-document.getElementById("yes").onclick=()=>{
+yes.onclick=()=>{
 
 
 document.querySelector(".card").innerHTML=`
 
 <img src="yes.jpg">
 
+
 <h1>
 YAY! Thank you for saying yes, Dear! ❤️
 </h1>
 
-<button onclick="itinerary()">Next ➜</button>
+
+<button onclick="itinerary()">
+Next ➜
+</button>
 
 `;
 
@@ -206,22 +285,36 @@ YAY! Thank you for saying yes, Dear! ❤️
 
 
 
+
+
 function itinerary(){
+
 
 document.querySelector(".card").innerHTML=`
 
-<img src="itinerary.jpg">
+<img src="itinerary.jpg"
+style="
+width:100%;
+height:auto;
+max-height:500px;
+object-fit:contain;
+">
+
 
 <h1>
 Because you said yes, here's our itinerary! 🥰
 </h1>
+
 
 <p>
 If you have any suggestions, feel free to message me.
 We can still adjust this depending on what time we meet and the weather. Hehehe ❤️
 </p>
 
-<button onclick="finalPage()">Next ➜</button>
+
+<button onclick="ending()">
+Next ➜
+</button>
 
 `;
 
@@ -229,13 +322,17 @@ We can still adjust this depending on what time we meet and the weather. Hehehe 
 
 
 
-function finalPage(){
+
+
+function ending(){
+
 
 document.querySelector(".card").innerHTML=`
 
 <h1>
 See you, Dear! ❤️
 </h1>
+
 
 <p>
 Get a good night's sleep today, okay?
