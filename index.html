@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>National GF Day ❤️</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,7 +65,6 @@ background:#999;
 color:white;
 }
 
-
 #floatBox{
 position:fixed;
 inset:0;
@@ -84,18 +84,15 @@ animation:fly linear forwards;
 @keyframes fly{
 
 from{
-transform:translateY(110vh) rotate(0deg);
+transform:translateY(110vh);
 }
 
 to{
-transform:translateY(-150px) rotate(360deg);
+transform:translateY(-120px) rotate(360deg);
 }
 
 }
 
-
-
-/* FULLSCREEN IMAGE */
 
 #fullImage{
 
@@ -119,10 +116,8 @@ flex-direction:column;
 max-width:95%;
 max-height:85%;
 object-fit:contain;
-border-radius:15px;
 
 }
-
 
 </style>
 
@@ -130,6 +125,12 @@ border-radius:15px;
 
 
 <body>
+
+
+<audio id="bgMusic" autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
 
 
 <div id="floatBox"></div>
@@ -149,7 +150,9 @@ Close ❌
 
 <div class="card">
 
+
 <img id="photo" src="happy.jpg">
+
 
 <h1 id="text">
 Do you wanna go with me unwinding and celebrating National GF Day? ❤️
@@ -171,6 +174,22 @@ NO 💔
 
 
 <script>
+
+
+// MUSIC
+
+window.onload=function(){
+
+let music=document.getElementById("bgMusic");
+
+music.volume=0.5;
+
+music.play();
+
+};
+
+
+
 
 
 // FLOATING PICTURES
@@ -201,10 +220,8 @@ x.className="float";
 
 x.style.left=Math.random()*95+"%";
 
-
 x.style.width=
 35+Math.random()*25+"px";
-
 
 x.style.height=
 35+Math.random()*25+"px";
@@ -212,7 +229,6 @@ x.style.height=
 
 x.style.animationDuration=
 8+Math.random()*5+"s";
-
 
 
 document
@@ -224,12 +240,12 @@ document
 setTimeout(()=>x.remove(),13000);
 
 
-
 },700);
 
 
 
 setInterval(()=>{
+
 
 p++;
 
@@ -249,14 +265,23 @@ p=0;
 let prompts=[
 
 ["Are you sure? 🥺","sad1.jpg"],
+
 ["Laaaaah bat ka nag No 😭","sad2.jpg"],
+
 ["Beeeeh hindi ako titigil dito 😂","sad3.jpg"],
+
 ["I'll wait until you said yes. Balakajan ❤️","sad4.jpg"],
+
 ["Basta mag wa-wait akooo, hindi ako aalis dito 🥹","sad5.jpg"],
+
 ["Kahit tumagal pa yan ilang taon pa, I'll wait na mag yes ka. Balakajan ❤️","sad6.jpg"],
+
 ["Yes? yes? yes? 🥺","sad7.jpg"],
+
 ["Tita oh, si Alex hahahaha 😂","sad8.jpg"],
+
 ["Beh try mo lang mag yes 😌","sad9.jpg"],
+
 ["Hindi to titigil hahahaha 😂","sad10.jpg"]
 
 ];
@@ -270,27 +295,33 @@ let scale=1;
 function shuffle(){
 
 list=[...prompts].sort(()=>Math.random()-.5);
+
 i=0;
 
 }
+
 
 shuffle();
 
 
 
-no.onclick=()=>{
+no.onclick=function(){
 
 
 if(i>=list.length)
 shuffle();
 
 
+
 text.innerHTML=list[i][0];
+
 
 photo.src=list[i][1];
 
 
-scale+=.15;
+
+scale+=0.15;
+
 
 if(scale>3)
 scale=3;
@@ -300,7 +331,9 @@ yes.style.transform=
 `scale(${scale})`;
 
 
+
 i++;
+
 
 };
 
@@ -308,15 +341,16 @@ i++;
 
 
 
-// YES
+// YES PAGE
 
 
-yes.onclick=()=>{
+yes.onclick=function(){
 
 
 document.querySelector(".card").innerHTML=`
 
 <img src="yes.jpg">
+
 
 <h1>
 YAY! Thank you for saying yes, Dear! ❤️
@@ -341,11 +375,7 @@ function itinerary(){
 document.querySelector(".card").innerHTML=`
 
 <img src="itinerary.jpg"
-style="
-width:100%;
-height:250px;
-object-fit:contain;
-">
+style="width:100%;height:250px;object-fit:contain">
 
 
 <h1>
@@ -374,11 +404,12 @@ Next ➜
 
 
 
+
 function openFull(){
 
-document.getElementById("bigPic").src="itinerary.jpg";
+bigPic.src="itinerary.jpg";
 
-document.getElementById("fullImage").style.display="flex";
+fullImage.style.display="flex";
 
 }
 
@@ -386,7 +417,7 @@ document.getElementById("fullImage").style.display="flex";
 
 function closeFull(){
 
-document.getElementById("fullImage").style.display="none";
+fullImage.style.display="none";
 
 }
 
